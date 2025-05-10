@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			<% if (book) {%> <%= book.title %> <% } else {%> Book not found <% }%>
+		</title>
+	</head>
+	<body>
+		<% if (book) {%>
+		<h1><%= book.title %></h1>
+		<p>Author: <b><%= book.author_name %></b></p>
+		<p>Genre: <b><%= book.genre_name %></b></p>
+		<p>Publication year: <b><%= book.publication_year %></b></p>
+		<% } else {%>
+		<h1>Book not found.</h1>
+		<% } %>
+		<a href="/books">Return to books</a>
+	</body>
+</html>
