@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Authors</title>
+	</head>
+	<body>
+		<h1>Authors:</h1>
+		<% if (authors) {%>
+		<ul>
+			<% authors.forEach((author) => {%>
+			<li><a href="/authors/<%= author.id %>"><%= author.name %></a></li>
+			<% }) %>
+		</ul>
+		<%} else { %>
+		<h2>There are no authors.</h2>
+		<%}%>
+		<a href="/">Main page</a>
+	</body>
+</html>
