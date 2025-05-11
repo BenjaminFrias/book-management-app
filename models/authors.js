@@ -5,7 +5,13 @@ async function getAllAuthors() {
 	return rows;
 }
 
-async function getAuthorById(id) {
+async function getAuthorInfoById(id) {
+	const author = await pool.query("SELECT * FROM authors WHERE id=($1);", [id]);
+
+	if (!author.rows) {
+		return null;
+	}
+
 	const { rows } = await pool.query(
 		`
         SELECT authors.*, books.*, genres.name AS genre_name
@@ -17,11 +23,43 @@ async function getAuthorById(id) {
 		[id]
 	);
 
-	if (rows.length > 0) {
-		return rows;
-	} else {
-		return null;
+	if (rows.length < 1) {
+		return { author: author.rows[0], author_books: [] };
 	}
+
+	const authorData = {
+		author: {
+			id: rows[0].id,
+			name: rows[0].name,
+		},
+		books: [],
+	};
+
+	for (let book of rows) {
+		const singleBook = {
+			title: book.title,
+			publication_year: book.publication_year,
+			genre_name: book.genre_name,
+		};
+		authorData.books.push(singleBook);
+	}
+
+	return authorData;
 }
 
-module.exports = { getAllAuthors, getAuthorById };
+async function addNewAuthor(name) {
+	await pool.query(
+		`
+		INSERT INTO authors (name)
+		VALUES ($1);
+		`,
+		[name]
+	);
+	return;
+}
+
+module.exports = {
+	getAllAuthors,
+	getAuthorInfoById,
+	addNewAuthor,
+};

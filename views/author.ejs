@@ -4,22 +4,26 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>
-			<% if (author) {%> <%= author[0].name %> <% } else {%> Author not found <%
+			<% if (author) {%> <%= author.name %> <% } else {%> Author not found <%
 			}%>
 		</title>
 	</head>
 	<body>
 		<% if (author) {%>
-		<h1>List of books written by <%= author[0].name %></h1>
+		<h1><%= author.name %></h1>
+		<% if (books) {%>
+		<h2>List of books written by <%= author.name %></h2>
 		<ul>
-			<% author.forEach((book) => {%>
+			<% books.forEach((book) => {%>
 			<li>
 				<a href="/books/<%= book.id%>"><%= book.title %></a> | <%=
 				book.publication_year %> | <%= book.genre_name %>
 			</li>
 			<% }) %>
 		</ul>
-		<% } else {%>
+		<%} else {%>
+		<h2>There are no books from this author.</h2>
+		<%}%> <% } else {%>
 		<h1>Author not found.</h1>
 		<% } %>
 		<a href="/authors">Return to authors</a>

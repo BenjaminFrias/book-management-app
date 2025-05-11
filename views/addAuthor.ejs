@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add new author</title>
+	</head>
+	<body>
+		<h1>Add a new author!</h1>
+		<form action="/authors/new" method="post">
+			<input
+				type="text"
+				name="author_name"
+				id="author"
+				placeholder="Author name:"
+				required
+			/>
+			<button type="submit">Add Author</button>
+		</form>
+		<hr />
+	</body>
+</html>

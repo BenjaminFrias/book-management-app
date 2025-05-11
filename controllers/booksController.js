@@ -15,7 +15,6 @@ async function getBookById(req, res) {
 }
 
 async function addNewBookGet(req, res) {
-	// TODO: pass authors and genres to make user select
 	const genres = await genresDB.getAllGenres();
 	const authors = await authorsDB.getAllAuthors();
 

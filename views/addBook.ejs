@@ -49,14 +49,5 @@
 		<% } %> <% if (!genres || genres.length === 0) { %>
 		<a href="/">Add new genre</a>
 		<% } %>
-
-		<script>
-			const authorSelect = document.getElementById("authors");
-			authorSelect.addEventListener("change", function () {
-				if (this.value === "new_author") {
-					window.location.href = "/";
-				}
-			});
-		</script>
 	</body>
 </html>
