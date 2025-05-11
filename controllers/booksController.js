@@ -1,4 +1,6 @@
 const booksDB = require("../models/books");
+const genresDB = require("../models/genres");
+const authorsDB = require("../models/authors");
 
 async function getAllBooks(req, res) {
 	const books = await booksDB.getAllBooks();
@@ -12,4 +14,18 @@ async function getBookById(req, res) {
 	res.render("book", { book: book });
 }
 
-module.exports = { getAllBooks, getBookById };
+async function addNewBookGet(req, res) {
+	// TODO: pass authors and genres to make user select
+	const genres = await genresDB.getAllGenres();
+	const authors = await authorsDB.getAllAuthors();
+
+	res.render("addBook", { genres: genres, authors: authors });
+}
+
+async function addNewBookPost(req, res) {
+	const { title, authorId, genreId, publication_year } = req.body;
+	await booksDB.addNewBook(title, authorId, genreId, publication_year);
+	res.redirect("/books/");
+}
+
+module.exports = { getAllBooks, getBookById, addNewBookGet, addNewBookPost };

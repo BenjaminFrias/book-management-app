@@ -8,7 +8,7 @@ async function getAllBooks() {
 async function getBookById(id) {
 	const { rows } = await pool.query(
 		`
-        SELECT books.*, authors.name AS author_name, genres.name AS genre_name
+        SELECT books.*, authors.name AS author_name, authors.id AS author_id, genres.name AS genre_name, genres.id AS genre_id
         FROM books
         JOIN authors ON books.author_id=authors.id
         JOIN genres ON books.genre_id=genres.id
@@ -24,7 +24,14 @@ async function getBookById(id) {
 	}
 }
 
-async function createBook() {
+async function addNewBook(title, authorId, genreId, publication_year) {
+	await pool.query(
+		`
+		INSERT INTO books (title, author_id, genre_id, publication_year)
+		VALUES ($1, $2, $3, $4);
+		`,
+		[title, authorId, genreId, publication_year]
+	);
 	return;
 }
 
@@ -39,7 +46,7 @@ async function updateBook() {
 module.exports = {
 	getAllBooks,
 	getBookById,
-	createBook,
+	addNewBook,
 	deleteBook,
 	updateBook,
 };

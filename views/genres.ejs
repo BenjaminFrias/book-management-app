@@ -3,19 +3,18 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Books</title>
+		<title>Genres</title>
 	</head>
 	<body>
-		<h1>List of all books:</h1>
-		<a href="/books/new">Add a new book!</a>
-		<% if (books) {%>
+		<h1>List of all genres:</h1>
+		<% if (genres) {%>
 		<ul>
-			<% books.forEach((book) => {%>
-			<li><a href="/books/<%= book.id %>"><%= book.title %></a></li>
+			<% genres.forEach((genre) => {%>
+			<li><a href="/genres/<%= genre.id %>"><%= genre.name %></a></li>
 			<% }) %>
 		</ul>
 		<%} else { %>
-		<h2>There are no books.</h2>
+		<h2>There are no genre.</h2>
 		<%}%>
 		<a href="/">Main page</a>
 	</body>

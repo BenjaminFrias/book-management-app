@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			<% if (genre) {%> <%= genre[0].genre_name %> <% } else {%> genre not found
+			<% }%>
+		</title>
+	</head>
+	<body>
+		<% if (genre) {%>
+		<h1>List of <%= genre[0].genre_name %> genre!</h1>
+		<ul>
+			<% genre.forEach((genre) => {%>
+			<li>
+				<a href="/books/<%= genre.book_id%>"><%= genre.book_title %></a>
+			</li>
+			<% }) %>
+		</ul>
+		<% } else {%>
+		<h1>genre not found.</h1>
+		<% } %>
+		<a href="/genres">Return to genres</a>
+	</body>
+</html>

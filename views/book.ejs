@@ -10,8 +10,8 @@
 	<body>
 		<% if (book) {%>
 		<h1><%= book.title %></h1>
-		<p>Author: <b><%= book.author_name %></b></p>
-		<p>Genre: <b><%= book.genre_name %></b></p>
+		Author: <b><a href="/authors/<%= book.author_id %>"><%= book.author_name %></a></b></p>
+		<p>Genre: <b><a href="/genres/<%= book.genre_id %>"><%= book.genre_name %></a></b></p>
 		<p>Publication year: <b><%= book.publication_year %></b></p>
 		<% } else {%>
 		<h1>Book not found.</h1>
