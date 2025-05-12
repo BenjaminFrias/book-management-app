@@ -4,23 +4,28 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>
-			<% if (genre) {%> <%= genre[0].genre_name %> <% } else {%> genre not found
-			<% }%>
+			<% if (genre) {%> <%= genre.name %> <% } else {%> genre not found <% }%>
 		</title>
 	</head>
 	<body>
 		<% if (genre) {%>
-		<h1>List of <%= genre[0].genre_name %> genre!</h1>
+		<h1><%= genre.name %> books!</h1>
+		<% if (books || books.length > 0) {%>
+		<h2>List of <%= genre.name %> books!</h2>
 		<ul>
-			<% genre.forEach((genre) => {%>
+			<% books.forEach((book) => {%>
 			<li>
-				<a href="/books/<%= genre.book_id%>"><%= genre.book_title %></a>
+				<a href="/books/<%= book.id%>"><%= book.title %></a>
 			</li>
 			<% }) %>
 		</ul>
-		<% } else {%>
+		<%} else {%>
+		<h2>There are no <%= genre.name%> books</h2>
+		<%}%> <% } else {%>
 		<h1>genre not found.</h1>
 		<% } %>
+		<a href="/genres/new">Add a new genre!</a>
+		<a href="/books/new">Add a new book!</a>
 		<a href="/genres">Return to genres</a>
 	</body>
 </html>

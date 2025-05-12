@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add new genre</title>
+	</head>
+	<body>
+		<h1>Add a new genre!</h1>
+		<form action="/genres/new" method="post">
+			<input
+				type="text"
+				name="genre_name"
+				id="genre"
+				placeholder="genre name:"
+				required
+			/>
+			<button type="submit">Add genre</button>
+		</form>
+		<hr />
+	</body>
+</html>

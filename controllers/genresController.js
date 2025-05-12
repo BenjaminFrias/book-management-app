@@ -7,8 +7,24 @@ async function getAllGenres(req, res) {
 
 async function getGenreById(req, res) {
 	const id = req.params.id;
-	const genre = await genresDB.getGenreById(id);
-	res.render("genre", { genre: genre });
+	const { genre, books } = await genresDB.getGenreById(id);
+
+	res.render("genre", { genre: genre, books: books });
 }
 
-module.exports = { getAllGenres, getGenreById };
+async function addNewGenreGet(req, res) {
+	res.render("addGenre");
+}
+
+async function addNewGenrePost(req, res) {
+	const { genre_name } = req.body;
+	await genresDB.addNewGenre(genre_name);
+	res.redirect("/genres");
+}
+
+module.exports = {
+	getAllGenres,
+	getGenreById,
+	addNewGenreGet,
+	addNewGenrePost,
+};
